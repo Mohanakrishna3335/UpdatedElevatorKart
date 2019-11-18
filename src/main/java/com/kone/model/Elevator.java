@@ -4,18 +4,21 @@ package com.kone.model;
  * This class contains getter and setter methods and override the hashCode and equals method
  */
 public class Elevator {
-    private int eid;
+    private int eno;
     private String name;
     private int price;
     private int stock;
     private String features;
+    private String etype;
     
-   public Elevator (int eid, String name, int price, int stock,String features) {
-        this.eid = eid; 
+   public Elevator (int eno, String name, int price, int stock,String features,String etype) {
+        this.eno = eno; 
         this.name = name;
         this.price = price;
         this.stock = stock;
-        this.setFeatures(features);
+        this.features=features;
+        this.etype=etype;
+        //this.setFeatures(features);
     }
 
 public Elevator() {
@@ -25,15 +28,15 @@ public Elevator() {
 /**
  * @return the eid
  */
-public int getEid() {
-	return eid;
+public int getEno() {
+	return eno;
 }
 
 /**
  * @param eid the eid to set
  */
-public void setEid(int eid) {
-	this.eid = eid;
+public void setEno(int eno) {
+	this.eno = eno;
 }
 
 /**
@@ -72,6 +75,20 @@ public int getStock() {
 }
 
 /**
+ * @return the etype
+ */
+public String getEtype() {
+	return etype;
+}
+
+/**
+ * @param etype the etype to set
+ */
+public void setEtype(String etype) {
+	this.etype = etype;
+}
+
+/**
  * @param stock the stock to set
  */
 public void setStock(int stock) {
@@ -99,7 +116,8 @@ public void setFeatures(String features) {
 public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + eid;
+	result = prime * result + eno;
+	result = prime * result + ((etype == null) ? 0 : etype.hashCode());
 	result = prime * result + ((features == null) ? 0 : features.hashCode());
 	result = prime * result + ((name == null) ? 0 : name.hashCode());
 	result = prime * result + price;
@@ -119,7 +137,12 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	Elevator other = (Elevator) obj;
-	if (eid != other.eid)
+	if (eno != other.eno)
+		return false;
+	if (etype == null) {
+		if (other.etype != null)
+			return false;
+	} else if (!etype.equals(other.etype))
 		return false;
 	if (features == null) {
 		if (other.features != null)

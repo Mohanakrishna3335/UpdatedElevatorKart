@@ -16,12 +16,12 @@ import com.kone.settings.NonConnectedElevators;
     Console logger = new Console();
     List<Elevator> cartItems = new ArrayList<Elevator>();
     
-    public void addElevatorToCartByEID(int eid) {
-       Elevator elevator = getElevatorByElevatorID(eid);
+    public void addElevatorToCartByENO(int eno) {
+       Elevator elevator = getElevatorByEquipmentNO(eno);
         addToCart(elevator);
     }
 
-    private Elevator getElevatorByElevatorID(int eid) {
+    private Elevator getElevatorByEquipmentNO(int eno) {
     	 Elevator elevator = null;
         List<Elevator> elevators = new Elevators().getElevators();
         List<Elevator> selevators= new NonConnectedElevators().getNonConnectedElevators();
@@ -40,7 +40,7 @@ import com.kone.settings.NonConnectedElevators;
         }
       
         for (Elevator elev: allElevators) {
-            if (elev.getEid() == eid) {
+            if (elev.getEno() == eno) {
                 elevator = elev;
                
                 break;
@@ -54,8 +54,8 @@ import com.kone.settings.NonConnectedElevators;
         cartItems.add(elevator);
     }
 //remove the elevator from the cart
-    public void removeElevatorByEID(int eid) {
-        Elevator elev = getElevatorByElevatorID(eid);
+    public void removeElevatorByENO(int eno) {
+        Elevator elev = getElevatorByEquipmentNO(eno);
         cartItems.remove(elev);
     }
 //print the elevator details

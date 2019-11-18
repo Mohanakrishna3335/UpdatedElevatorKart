@@ -23,10 +23,10 @@ public class NonConnectedElevators {
         String [] elevatorNames = {"I-Mono", "U-Mono"};
         int [] elevatorPrice = {6, 7};
         int [] stock = {42, 35};
-        String [] elevatorFeatures={"Machine room-less elevator for residential buildings with gearless technology","Machine-room-less elevator for residential and commerical specific building in the urban space"};
-        
+        String [] elevatorFeatures={"1.Machine room-less elevator for residential buildings 2. gearless technology","1.Machine-room-less elevator for residential and commerical specific building in the urban space"};
+        String[] elevatorType={"Non-Connected","Non-Connected"};
         for (int i=0; i < elevatorNames.length; i++) {
-            this.selevators.add(new Elevator(i+20, elevatorNames[i], elevatorPrice[i], stock[i], elevatorFeatures[i]));
+            this.selevators.add(new Elevator(i+20, elevatorNames[i], elevatorPrice[i], stock[i], elevatorFeatures[i],elevatorType[i]));
         }
     }
 }

@@ -5,11 +5,10 @@ import java.util.Scanner;
 import com.kone.Implementation.Cart;
 import com.kone.console.Console;
 import com.kone.model.Elevator;
+import com.kone.repository.ConnectedElevators;
+import com.kone.repository.DXElevatorData;
 import com.kone.repository.DataOfElevatorService;
-import com.kone.settings.Elevators;
-import com.kone.settings.NonConnectedElevators;
-
-import com.kone.settings.DigitalExperience;
+import com.kone.repository.NonConnectedElevatorData;
 
 
 /*
@@ -92,6 +91,8 @@ public class UI {
 			switch (ch) {
             case 1:
                logger.writeInfo("Hey User please select your choice of connected elevator!!!");
+ 	          logger.writeInfo("EqupNo"+"\t "+"ElevatorName"+"\t\t"+"Features");
+ 	         logger.writeInfo("---------------------------------------------------------------------------------------------------------------");
                displayConnectedElevators();
                userIndication();
                storeElevatorsDetails();
@@ -102,6 +103,8 @@ public class UI {
                
             case 2:
                 logger.writeInfo("Hey user please select your choice of non-connected elevator ");
+                logger.writeInfo("EqupNo"+"\t "+"ElevatorName"+"\t\t"+"Features");
+    	         logger.writeInfo("---------------------------------------------------------------------------------------------------------------");
                 displayNonConnectedElevators();
                // startScreen();
                 userIndication();
@@ -111,6 +114,8 @@ public class UI {
                 break;
             case 3:
             	logger.writeInfo("Hey user please select your choice of DigitalExperience elevator ");
+            	logger.writeInfo("EqupNo"+"\t "+"ElevatorName"+"\t\t"+"Features");
+    	         logger.writeInfo("---------------------------------------------------------------------------------------------------------------");
             	displayDigitalElevators();
             	 //startScreen();
             	userIndication();
@@ -166,6 +171,7 @@ private void CustomerDetails() {
      logger.writeInfo("ElevatorModel:"+elevatormodel+"--"+"CustomerName:"+customername+"--"+"mobileNo:"+mobileNo);
      logger.writeInfo("Customer signed agreement with kone elevators for servicing"+ "  "+elevatormodel+" " +"elevator");
      logger.writeInfo("Thankyou for using kone services and products,we look forward for your co-operation in future");
+     
    }
 // inner choice method is used to add or remove elevator  from the elevatorKart.
    private void innerChoice() {
@@ -221,21 +227,28 @@ private void CustomerDetails() {
 		 logger.writeInfo("***Hitachi elevators***");
 		}*/
 	private void displayDigitalElevators() {
-    	 List<Elevator> delevators = new DigitalExperience().getDigitalExperience();
-         for (Elevator elev: delevators) {
-             logger.writeInfo(elev.getEid() + "- " +elev.getName());
-         }
+	  DXElevatorData dataOfDXElevator =new DXElevatorData();
+		 List<Elevator> elevatorData=dataOfDXElevator.DXelevatorData();
+		 for(Elevator elevatorDataLoop:elevatorData){
+			 System.out.println("Elevator Id"+elevatorDataLoop.getEno());
+			 System.out.println("Elevator Name"+elevatorDataLoop.getName());
+			 System.out.println("Elevator features"+elevatorDataLoop.getFeatures());
+		 }
 			
 		}
 	//display the NonconnectedElevators with eid and eName
 	private void displayNonConnectedElevators() {
-    	   List<Elevator> selevators = new  NonConnectedElevators().getNonConnectedElevators();
-           for (Elevator elev: selevators) {
-               logger.writeInfo(elev.getEid() + "- " +elev.getName());
+		NonConnectedElevatorData dataOfNonConnectedElevator =new NonConnectedElevatorData();
+		 List<Elevator> elevatorData=dataOfNonConnectedElevator.NonConnectedelevatorData();
+		 for(Elevator elevatorDataLoop:elevatorData){
+			 System.out.println("Elevator Id"+elevatorDataLoop.getEno());
+			 System.out.println("Elevator Name"+elevatorDataLoop.getName());
+			 System.out.println("Elevator features"+elevatorDataLoop.getFeatures());
+		 }
            }
 		
 		
-	}
+	
 	//take the user input from console
 	private int getUserInput()  {
         try{
@@ -277,17 +290,26 @@ private void CustomerDetails() {
           logger.writeInfo("   ");
     }
 //This method is used to display the ConnectedElevators present in showRoom.
-    private void displayConnectedElevators() {
+    /*private void displayConnectedElevators() {
         List<Elevator> elevators = new Elevators().getElevators();
         for (Elevator elev: elevators) {
-            logger.writeInfo(elev.getEid() + "- " +elev.getName());
+            logger.writeInfo(elev.getEno() + "- " +elev.getName());
         }
-    }
-    
+    }*/
+  // from database display list the eno,name and features of connected elevators
+     private void displayConnectedElevators(){
+     ConnectedElevators dataOfConnectedElevator =new ConnectedElevators();
+	 List<Elevator> elevatorData=dataOfConnectedElevator.ConnectedelevatorData();
+	 for(Elevator elevatorDataLoop:elevatorData){
+		 System.out.println("Elevator Id"+elevatorDataLoop.getEno());
+		 System.out.println("Elevator Name"+elevatorDataLoop.getName());
+		 System.out.println("Elevator features"+elevatorDataLoop.getFeatures());
+	 }
+     }
 
     private void addElevatorToCart() {
         int eid = getUserInput();
-        cart.addElevatorToCartByEID(eid);      
+        cart.addElevatorToCartByENO(eid);      
     }
 
     private void showCart() {
@@ -296,7 +318,7 @@ private void CustomerDetails() {
 
     private void removeElevatorFromCart() {
         int eid = getUserInput();
-        cart.removeElevatorByEID(eid);
+        cart.removeElevatorByENO(eid);
     }
 }
 

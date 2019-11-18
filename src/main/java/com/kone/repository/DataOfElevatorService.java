@@ -19,9 +19,10 @@ public class DataOfElevatorService {
 	      Elevator elevator=new Elevator();
 	      String ename;
 	      int price;
-	      int eid;
+	      int eno;
 	      int stock;
 	      String features;
+	      String etype;
 	      try {
 	    	 // System.out.println("Connection is going to be established");
 	         //Class.forName("com.mysql.jdbc.Driver.");
@@ -32,10 +33,10 @@ public class DataOfElevatorService {
 	         //System.out.println("Opened database successfully");
 
 	         stmt = c.createStatement();
-	         ResultSet rs = stmt.executeQuery( "SELECT * FROM koneiot.koneelevators;" );
+	         ResultSet rs = stmt.executeQuery( "SELECT * FROM koneiot.elevators;" );
 	         while ( rs.next() ) {
-	            eid = rs.getInt("eid");
-	            elevator.setEid(eid);
+	            eno = rs.getInt("eno");
+	            elevator.setEno(eno);
 	            ename = rs.getString("ename");
 	            elevator.setName(ename);
 	            price  = rs.getInt("price");
@@ -44,12 +45,11 @@ public class DataOfElevatorService {
 	            elevator.setStock(stock);
 	            features = rs.getString("features");
 	            elevator.setFeatures(features);
-	            System.out.println( "ID = " + eid );
-	            System.out.println( "Type = " + ename );
-	            System.out.println( "price = " + price );
-	            System.out.println( "stock = " + stock );
-	            System.out.println("features="+features);
-	            System.out.println();
+	            etype=rs.getString("etype");
+	            elevator.setEtype(etype);
+	           // System.out.format("%1d%50s%1d%2d%100s%10s", eno,ename,price,stock,features,etype);
+	            System.out.println(eno + "\t" + ename + "\t\t" + price + "\t" + stock +"\t" + features+"\t"+etype);
+	            
 	         }
 	         rs.close();
 	         stmt.close();

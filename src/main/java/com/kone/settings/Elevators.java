@@ -23,10 +23,11 @@ public class Elevators {
         String [] elevatorNames = {"U-Galaxy kc-120", "U-Galaxy kc-210", "U-Galaxy kc-230E"};
         int[] elevatorPrice = {8, 9, 10};
         int [] stock = {72, 65, 45};
-        String [] elevatorFeatures={"it has 2 amazing features like people count and temperature measure","it has amazing features like people count, temperature measure,speed and tensile strength of elevator","it has amazing features like people count, temperature measure,speed , tensile strength ,firedetection and level of elevator"};
+        String [] elevatorFeatures={"1. people count 2.temperature measure","1. people count 2.temperature measure 3.speed of the elevator 4.tensile strength of elevator","1.people count 2.temperature measure 3.speed of the elevator 4.tensile strength of elevator ,5.firedetection 6. level of elevator"};
+        String[] elevatorType={"Connected","Connected","Connected"};
         
         for (int i=0; i < elevatorNames.length; i++) {
-            this.elevators.add(new Elevator(i+10, elevatorNames[i], elevatorPrice[i], stock[i],elevatorFeatures[i]));
+            this.elevators.add(new Elevator(i+10, elevatorNames[i], elevatorPrice[i], stock[i],elevatorFeatures[i],elevatorType[i]));
         }
     }
 

@@ -23,10 +23,10 @@ public class DigitalExperience{
         String [] elevatorNames = {"DX-KCECPUC14.1"};
         int [] elevatorPrice = {11};
         int [] stock = {32};
-        String[] elevatorFeatures ={"it is a new digital platform for kone elvators which provides additional and advanced peopleflow"};
-        
+        String[] elevatorFeatures ={"1.advanced peopleflow 2.temperature measure 3.speed of the elevator 4.tensile strength of elevator ,5.firedetection 6. level of elevator"};
+        String[] elevatorType={"DX"};
         for (int i=0; i < elevatorNames.length; i++) {
-            this.delevators.add(new Elevator(i+30, elevatorNames[i], elevatorPrice[i], stock[i],elevatorFeatures[i]));
+            this.delevators.add(new Elevator(i+30, elevatorNames[i], elevatorPrice[i], stock[i],elevatorFeatures[i],elevatorType[i]));
         }
     }
 }
