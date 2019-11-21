@@ -3,7 +3,6 @@ com\kone\View\UI.class
 com\kone\View\Main.class
 com\kone\settings\DigitalExperience.class
 com\kone\repository\ConnectedElevators.class
-com\kone\services\ElevatorServiceImple.class
 com\kone\controller\ElevatorResource.class
 com\kone\console\Console.class
 com\kone\repository\DataOfElevatorService.class
@@ -11,5 +10,6 @@ com\kone\settings\Elevators.class
 com\kone\repository\DXElevatorData.class
 com\kone\model\Elevator.class
 com\kone\repository\NonConnectedElevatorData.class
+com\kone\service\impl\ElevatorServiceImple.class
 com\kone\settings\NonConnectedElevators.class
-com\kone\services\ElevatorService.class
+com\kone\service\ElevatorService.class
