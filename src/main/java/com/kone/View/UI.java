@@ -4,11 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 import com.kone.Implementation.Cart;
 import com.kone.console.Console;
+import com.kone.dao.impl.ElevatorDaoImpl;
 import com.kone.model.Elevator;
-import com.kone.repository.ConnectedElevators;
-import com.kone.repository.DXElevatorData;
-import com.kone.repository.DataOfElevatorService;
-import com.kone.repository.NonConnectedElevatorData;
 
 /*
  * UI class contains the methods which are responsible to display in screen/console.
@@ -19,7 +16,7 @@ public class UI {
 	private int ch = 0;
 	Console logger = new Console();
 
-	public UI() {
+	public UI() throws Exception {
 		menu();
 	}
 
@@ -40,7 +37,7 @@ public class UI {
 		logger.writeInfo("0. Exit");
 	}
 
-	public void menu() {
+	public void menu() throws Exception {
 		do {
 			firstScreen();
 			getUserInput();
@@ -79,15 +76,8 @@ public class UI {
 
 	}
 
-	/*
-	 * //display the service elevators names and id private void
-	 * displayServiceElevators() { List<Elevator> serelevators = new
-	 * ServiceElevators().getServiceElevators(); for (Elevator elev:
-	 * serelevators) { logger.writeInfo(elev.getEid() + "- " +elev.getName()); }
-	 * 
-	 * }
-	 */ // user to choose the type of elevator and there subcategory
-	private void futureChoice() {
+	// user to choose the type of elevator and there subcategory
+	private void futureChoice() throws Exception {
 		switch (ch) {
 		case 1:
 			logger.writeInfo("Hey User please select your choice of connected elevator!!!");
@@ -186,7 +176,7 @@ public class UI {
 
 	// inner choice method is used to add or remove elevator from the
 	// elevatorKart.
-	private void innerChoice() {
+	private void innerChoice() throws Exception {
 		switch (ch) {
 		case 1:
 			displayStoreElevators();
@@ -210,10 +200,10 @@ public class UI {
 	}
 
 	// display the all elevators details
-	private void displayStoreElevators() {
+	private void displayStoreElevators() throws Exception {
 
-		DataOfElevatorService dataOfElevatorService = new DataOfElevatorService();
-		List<Elevator> elevatorData = dataOfElevatorService.elevatorData();
+		ElevatorDaoImpl elevatordaoimpl = new ElevatorDaoImpl();
+		List<Elevator> elevatorData = elevatordaoimpl.elevatorData();
 		for (Elevator elevatorDataLoop : elevatorData) {
 			// System.out.println("Elevator Id"+elevatorDataLoop.getEid());
 			System.out.println("Elevator Name" + elevatorDataLoop.getName());
@@ -223,23 +213,9 @@ public class UI {
 		}
 	}
 
-	/*
-	 * logger.writeInfo("Kone Showroom containsthe following elevators: ");
-	 * logger.writeInfo("***connected-elevators*** ");
-	 * logger.writeInfo("u-galaxy kc-120"); logger.writeInfo("u-galaxy kc-210");
-	 * logger.writeInfo("u-galaxy kc-250");
-	 * logger.writeInfo(" ***nonconnected-elevators***");
-	 * logger.writeInfo("I-mono"); logger.writeInfo("U-mono");
-	 * logger.writeInfo("***digitalelevators***");
-	 * logger.writeInfo("KCECPUC 14.1 ");
-	 * logger.writeInfo("***Serviceelevators***");
-	 * logger.writeInfo("***OTIS elevators***");
-	 * logger.writeInfo("***ThyssenKrupp elevators***");
-	 * logger.writeInfo("***Hitachi elevators***"); }
-	 */
-	private void displayDigitalElevators() {
-		DXElevatorData dataOfDXElevator = new DXElevatorData();
-		List<Elevator> elevatorData = dataOfDXElevator.DXelevatorData();
+	private void displayDigitalElevators() throws Exception {
+		ElevatorDaoImpl elevatordaoimpl = new ElevatorDaoImpl();
+		List<Elevator> elevatorData = elevatordaoimpl.DXelevatorData();
 		for (Elevator elevatorDataLoop : elevatorData) {
 			System.out.println("Elevator Id" + elevatorDataLoop.getEno());
 			System.out.println("Elevator Name" + elevatorDataLoop.getName());
@@ -249,9 +225,9 @@ public class UI {
 	}
 
 	// display the NonconnectedElevators with eid and eName
-	private void displayNonConnectedElevators() {
-		NonConnectedElevatorData dataOfNonConnectedElevator = new NonConnectedElevatorData();
-		List<Elevator> elevatorData = dataOfNonConnectedElevator.NonConnectedelevatorData();
+	private void displayNonConnectedElevators() throws Exception {
+		ElevatorDaoImpl elevatordaoimpl = new ElevatorDaoImpl();
+		List<Elevator> elevatorData = elevatordaoimpl.NonConnectedelevatorData();
 		for (Elevator elevatorDataLoop : elevatorData) {
 			System.out.println("Elevator Id" + elevatorDataLoop.getEno());
 			System.out.println("Elevator Name" + elevatorDataLoop.getName());
@@ -299,18 +275,9 @@ public class UI {
 		logger.writeInfo("   ");
 	}
 
-	// This method is used to display the ConnectedElevators present in
-	// showRoom.
-	/*
-	 * private void displayConnectedElevators() { List<Elevator> elevators = new
-	 * Elevators().getElevators(); for (Elevator elev: elevators) {
-	 * logger.writeInfo(elev.getEno() + "- " +elev.getName()); } }
-	 */
-	// from database display list the eno,name and features of connected
-	// elevators
-	private void displayConnectedElevators() {
-		ConnectedElevators dataOfConnectedElevator = new ConnectedElevators();
-		List<Elevator> elevatorData = dataOfConnectedElevator.ConnectedelevatorData();
+	private void displayConnectedElevators() throws Exception {
+		ElevatorDaoImpl elevatordaoimpl = new ElevatorDaoImpl();
+		List<Elevator> elevatorData = elevatordaoimpl.ConnectedelevatorData();
 		for (Elevator elevatorDataLoop : elevatorData) {
 			System.out.println("Elevator Id" + elevatorDataLoop.getEno());
 			System.out.println("Elevator Name" + elevatorDataLoop.getName());
@@ -331,4 +298,5 @@ public class UI {
 		int eid = getUserInput();
 		cart.removeElevatorByENO(eid);
 	}
+
 }

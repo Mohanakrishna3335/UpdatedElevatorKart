@@ -33,8 +33,7 @@ public class Elevator {
 	}
 
 	/**
-	 * @param eid
-	 *            the eid to set
+	 * @param eid the eid to set
 	 */
 	public void setEno(int eno) {
 		this.eno = eno;
@@ -48,8 +47,7 @@ public class Elevator {
 	}
 
 	/**
-	 * @param name
-	 *            the name to set
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -63,8 +61,7 @@ public class Elevator {
 	}
 
 	/**
-	 * @param price
-	 *            the price to set
+	 * @param price the price to set
 	 */
 	public void setPrice(int price) {
 		this.price = price;
@@ -85,16 +82,14 @@ public class Elevator {
 	}
 
 	/**
-	 * @param etype
-	 *            the etype to set
+	 * @param etype the etype to set
 	 */
 	public void setEtype(String etype) {
 		this.etype = etype;
 	}
 
 	/**
-	 * @param stock
-	 *            the stock to set
+	 * @param stock the stock to set
 	 */
 	public void setStock(int stock) {
 		this.stock = stock;
@@ -108,8 +103,7 @@ public class Elevator {
 	}
 
 	/**
-	 * @param features
-	 *            the features to set
+	 * @param features the features to set
 	 */
 	public void setFeatures(String features) {
 		this.features = features;

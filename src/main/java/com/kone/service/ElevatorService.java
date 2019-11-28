@@ -1,11 +1,15 @@
 package com.kone.service;
 
+import java.util.List;
+
+import com.kone.model.Elevator;
+
 public interface ElevatorService {
-	public Object displayStoreElevators();
+	public List<Elevator> displayStoreElevator() throws Exception;
 
-	public Object displayConnectedElevators();
+	public List<Elevator> displayConnectedElevator() throws Exception;
 
-	public Object displayNonConnectedElevators();
+	public List<Elevator> displayNonConnectedElevator() throws Exception;
 
-	public Object displayDigitalElevators();
+	public List<Elevator> displayDigitalElevator() throws Exception;
 }
