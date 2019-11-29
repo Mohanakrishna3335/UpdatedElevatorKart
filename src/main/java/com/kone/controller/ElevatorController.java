@@ -53,7 +53,7 @@ public class ElevatorController {
 				.build();
 	}
 
-	@Path("/elevators/digitalelevators")
+	@Path("/digitalelevators")
 	@GET
 	public Response displayDigitalElevator() throws Exception {
 		List<Elevator> digitalelevatorsList = elevatorserviceimpl.displayDigitalElevator();
@@ -63,5 +63,5 @@ public class ElevatorController {
 				.build();
 
 	}
-
+	
 }

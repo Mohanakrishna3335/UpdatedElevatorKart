@@ -10,7 +10,6 @@ com\kone\model\AllElevators.class
 com\kone\console\Console.class
 com\kone\dao\impl\ElevatorDaoImpl.class
 com\kone\settings\Elevators.class
-com\kone\controller\ElevatorApplication.class
 com\kone\model\Elevator.class
 com\kone\service\impl\ElevatorServiceImple.class
 com\kone\settings\NonConnectedElevators.class

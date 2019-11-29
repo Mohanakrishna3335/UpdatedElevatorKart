@@ -205,7 +205,6 @@ public class UI {
 		ElevatorDaoImpl elevatordaoimpl = new ElevatorDaoImpl();
 		List<Elevator> elevatorData = elevatordaoimpl.elevatorData();
 		for (Elevator elevatorDataLoop : elevatorData) {
-			// System.out.println("Elevator Id"+elevatorDataLoop.getEid());
 			System.out.println("Elevator Name" + elevatorDataLoop.getName());
 			System.out.println("Elevator Price" + elevatorDataLoop.getPrice());
 			System.out.println("Elevator stock" + elevatorDataLoop.getStock());
