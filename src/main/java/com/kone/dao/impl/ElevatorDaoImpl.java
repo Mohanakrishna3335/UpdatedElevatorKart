@@ -1,7 +1,7 @@
 package com.kone.dao.impl;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -50,6 +50,7 @@ public class ElevatorDaoImpl implements ElevatorDao {
 		Class.forName("com.mysql.jdbc.Driver");
 		c = DriverManager.getConnection("jdbc:mysql://localhost:3306/koneiot", "root", "root");
 		c.setAutoCommit(false);
+
 		stmt = c.createStatement();
 	}
 
@@ -141,6 +142,43 @@ public class ElevatorDaoImpl implements ElevatorDao {
 		}
 		System.out.println("Operation done successfully");
 		return list;
+	}
+
+	public void addElevator(Elevator elevator) throws Exception {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/koneiot", "root", "root");
+			int equipementNumber = elevator.getEno();
+			String elevatorName = elevator.getName();
+			String elevatorType = elevator.getEtype();
+			String elevatorFeatures = elevator.getFeatures();
+			int elevatorPrice = elevator.getPrice();
+			int elevatorStock = elevator.getStock();
+
+			PreparedStatement stmt = c.prepareStatement(
+					"insert into koneiot.allelevators (eno,ename,price,stock,features,etype) values(?,?,?,?,?,?)");
+			stmt.setInt(1, equipementNumber);
+			stmt.setString(2, elevatorName);
+			stmt.setInt(3, elevatorPrice);
+			stmt.setInt(4, elevatorStock);
+			stmt.setString(5, elevatorFeatures);
+			stmt.setString(6, elevatorType);
+
+			int i = stmt.executeUpdate();
+			System.out.println(i + " records inserted");
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + "=and then=" + e.getMessage());
+		} finally {
+			if(stmt!=null) {
+
+			stmt.close();
+			}
+		}
+		System.out.println("Successfully inserted into table");
+
 	}
 
 }

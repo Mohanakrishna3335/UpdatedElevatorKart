@@ -15,7 +15,7 @@
 				<version>3.2.2</version>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
-					<failOnMissingWebXml>false</failOnMissingWebXml> 
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -35,6 +35,11 @@
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-moxy</artifactId>
 			<version>2.16</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>2.2.4</version>
 		</dependency>
 	</dependencies>
 </project>

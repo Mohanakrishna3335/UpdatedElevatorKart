@@ -285,8 +285,9 @@ public class UI {
 	}
 
 	private void addElevatorToCart() {
-		int eid = getUserInput();
-		cart.addElevatorToCartByENO(eid);
+		//scanner class implementation not needed
+		int eno = getUserInput();
+		cart.addElevatorToCartByENO(eno);
 	}
 
 	private void showCart() {
@@ -294,8 +295,8 @@ public class UI {
 	}
 
 	private void removeElevatorFromCart() {
-		int eid = getUserInput();
-		cart.removeElevatorByENO(eid);
+		int eno = getUserInput();
+		cart.removeElevatorByENO(eno);
 	}
 
 }

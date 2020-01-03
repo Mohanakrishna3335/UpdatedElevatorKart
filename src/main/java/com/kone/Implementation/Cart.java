@@ -12,10 +12,16 @@ import com.kone.settings.NonConnectedElevators;
 public class Cart {
 	Console logger = new Console();
 	List<Elevator> cartItems = new ArrayList<Elevator>();
+	
+	
 
-	public void addElevatorToCartByENO(int eno) {
+	public List<Elevator> addElevatorToCartByENO(int eno) {
 		Elevator elevator = getElevatorByEquipmentNO(eno);
+		
+		//List<Elevator> cartItems =addToCart(elevator);
 		addToCart(elevator);
+		System.out.println("entered inside cart"+cartItems.toString());
+		return cartItems;
 	}
 
 	private Elevator getElevatorByEquipmentNO(int eno) {
@@ -46,20 +52,24 @@ public class Cart {
 	}
 
 	// add elevators to the cart
-	private void addToCart(Elevator elevator) {
+	private List<Elevator> addToCart(Elevator elevator) {
 		cartItems.add(elevator);
+		System.out.println("inside add to cart");
+		return cartItems;
 	}
 
 	// remove the elevator from the cart
-	public void removeElevatorByENO(int eno) {
+	public List<Elevator> removeElevatorByENO(int eno) {
 		Elevator elev = getElevatorByEquipmentNO(eno);
 		cartItems.remove(elev);
+		return cartItems;
 	}
 
 	// print the elevator details
-	public void printCartItems() {
+	public List<Elevator> printCartItems() {
 		for (Elevator elev : cartItems) {
 			logger.writeInfo(elev.getName() + " --> " + elev.getFeatures());
 		}
+		return cartItems;
 	}
 }

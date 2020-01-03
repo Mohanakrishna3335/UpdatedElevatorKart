@@ -61,5 +61,11 @@ public class ElevatorServiceImple implements ElevatorService {
 
 	}
 
+	public void addElevator(Elevator elevator) throws Exception {	
+		elevatordaoimpl.addElevator(elevator);
+	}
+
+		}
+
+
 	
-}

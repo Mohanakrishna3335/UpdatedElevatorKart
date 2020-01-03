@@ -12,5 +12,9 @@ public interface ElevatorService {
 	public List<Elevator> displayNonConnectedElevator() throws Exception;
 
 	public List<Elevator> displayDigitalElevator() throws Exception;
-		
+	
+	public void  addElevator(Elevator elevator) throws Exception;
+	
+
+
 }
