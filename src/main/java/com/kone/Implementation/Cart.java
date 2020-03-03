@@ -68,7 +68,7 @@ public class Cart {
 	// print the elevator details
 	public List<Elevator> printCartItems() {
 		for (Elevator elev : cartItems) {
-			logger.writeInfo(elev.getName() + " --> " + elev.getFeatures());
+			logger.writeInfo(elev.getEname() + " --> " + elev.getFeatures());
 		}
 		return cartItems;
 	}

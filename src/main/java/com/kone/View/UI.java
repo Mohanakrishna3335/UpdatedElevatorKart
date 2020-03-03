@@ -205,7 +205,7 @@ public class UI {
 		ElevatorDaoImpl elevatordaoimpl = new ElevatorDaoImpl();
 		List<Elevator> elevatorData = elevatordaoimpl.elevatorData();
 		for (Elevator elevatorDataLoop : elevatorData) {
-			System.out.println("Elevator Name" + elevatorDataLoop.getName());
+			System.out.println("Elevator Name" + elevatorDataLoop.getEname());
 			System.out.println("Elevator Price" + elevatorDataLoop.getPrice());
 			System.out.println("Elevator stock" + elevatorDataLoop.getStock());
 			System.out.println("Elevator features" + elevatorDataLoop.getFeatures());
@@ -217,7 +217,7 @@ public class UI {
 		List<Elevator> elevatorData = elevatordaoimpl.DXelevatorData();
 		for (Elevator elevatorDataLoop : elevatorData) {
 			System.out.println("Elevator Id" + elevatorDataLoop.getEno());
-			System.out.println("Elevator Name" + elevatorDataLoop.getName());
+			System.out.println("Elevator Name" + elevatorDataLoop.getEname());
 			System.out.println("Elevator features" + elevatorDataLoop.getFeatures());
 		}
 
@@ -229,7 +229,7 @@ public class UI {
 		List<Elevator> elevatorData = elevatordaoimpl.NonConnectedelevatorData();
 		for (Elevator elevatorDataLoop : elevatorData) {
 			System.out.println("Elevator Id" + elevatorDataLoop.getEno());
-			System.out.println("Elevator Name" + elevatorDataLoop.getName());
+			System.out.println("Elevator Name" + elevatorDataLoop.getEname());
 			System.out.println("Elevator features" + elevatorDataLoop.getFeatures());
 		}
 	}
@@ -279,7 +279,7 @@ public class UI {
 		List<Elevator> elevatorData = elevatordaoimpl.ConnectedelevatorData();
 		for (Elevator elevatorDataLoop : elevatorData) {
 			System.out.println("Elevator Id" + elevatorDataLoop.getEno());
-			System.out.println("Elevator Name" + elevatorDataLoop.getName());
+			System.out.println("Elevator Name" + elevatorDataLoop.getEname());
 			System.out.println("Elevator features" + elevatorDataLoop.getFeatures());
 		}
 	}

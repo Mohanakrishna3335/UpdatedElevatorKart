@@ -1,19 +1,24 @@
 package com.kone.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /*
  * This class contains getter and setter methods and override the hashCode and equals method
  */
+@Entity
 public class Elevator {
+	@Id
 	private int eno;
-	private String name;
+	private String ename;
 	private int price;
 	private int stock;
 	private String features;
 	private String etype;
 
-	public Elevator(int eno, String name, int price, int stock, String features, String etype) {
+	public Elevator(int eno, String ename, int price, int stock, String features, String etype) {
 		this.eno = eno;
-		this.name = name;
+		this.ename = ename;
 		this.price = price;
 		this.stock = stock;
 		this.features = features;
@@ -26,31 +31,31 @@ public class Elevator {
 	}
 
 	/**
-	 * @return the eid
+	 * @return the eno
 	 */
 	public int getEno() {
 		return eno;
 	}
 
 	/**
-	 * @param eid the eid to set
+	 * @param eid the eno to set
 	 */
 	public void setEno(int eno) {
 		this.eno = eno;
 	}
 
 	/**
-	 * @return the name
+	 * @return the ename
 	 */
-	public String getName() {
-		return name;
+	public String getEname() {
+		return ename;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setEname(String ename) {
+		this.ename = ename;
 	}
 
 	/**
@@ -121,7 +126,7 @@ public class Elevator {
 		result = prime * result + eno;
 		result = prime * result + ((etype == null) ? 0 : etype.hashCode());
 		result = prime * result + ((features == null) ? 0 : features.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((ename == null) ? 0 : ename.hashCode());
 		result = prime * result + price;
 		result = prime * result + stock;
 		return result;
@@ -153,16 +158,22 @@ public class Elevator {
 				return false;
 		} else if (!features.equals(other.features))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (ename == null) {
+			if (other.ename != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!ename.equals(other.ename))
 			return false;
 		if (price != other.price)
 			return false;
 		if (stock != other.stock)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Elevator [eno=" + eno + ", ename=" + ename + ", price=" + price + ", stock=" + stock + ", features="
+				+ features + ", etype=" + etype + "]";
 	}
 
 }

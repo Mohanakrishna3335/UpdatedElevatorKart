@@ -15,7 +15,4 @@ public interface ElevatorDao {
 	public List<Elevator> DXelevatorData() throws Exception;
 
 	public void addElevator(Elevator elevator) throws Exception;
-
-	
-
 }

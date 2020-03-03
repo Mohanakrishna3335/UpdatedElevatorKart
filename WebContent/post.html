@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<h2 class="text-center">KONE</h2>
+		<h3>AddElevators</h3>
+		<form id="add-equipment">
+			<div class="form-group">
+				<label for="equipmentName">Equipment Name</label> <input type="text"
+					class="form-control" id="equipmentName"
+					placeholder="Enter Equipment Name" />
+			</div>
+			<div class="form-group">
+				<label for="equipmentNumber">Equipment Number</label> <input
+					type="text" class="form-control" id="equipmentNumber"
+					placeholder="Enter Equipment Number" />
+			</div>
+			<div class="form-group">
+				<label for="equipmentType">Equipment Type</label> <input type="text"
+					class="form-control" id="equipmentType"
+					placeholder="Enter The Equipment Type" />
+			</div>
+			<div class="form-group">
+				<label for="features">Features</label> <input type="text"
+					class="form-control" id="features"
+					placeholder="Enter the Equipment Features" />
+			</div>
+			<div class="form-group">
+				<label for="price">Price</label> <input type="text"
+					class="form-control" id="price"
+					placeholder="Enter the Equipment Price" />
+			</div>
+			<div class="form-group">
+				<label for="stockavailability">StockAvailability</label> <input type="text"
+					class="form-control" id="stockavailability"
+					placeholder="Enter the Equipment stock" />
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+
+		<div id="loading"></div>
+		<table class="table" id="equipment-table">
+			<thead>
+				<tr>
+					<th data-field="equipmentName">Equipment Name</th>
+					<th data-field="equipmentNumber">EquipmentNumber</th>
+					<th data-field="equipmentType">EquipmentType</th>
+					<th data-field="Features">Features</th>
+					<th data-field="Price">Price</th>
+					<th data-field="Stockavailability">Stock</th>
+				</tr>
+			</thead>
+		</table>
+		<br />
+		<br />
+		<br /> 
+	</div>
+
+	<script>
+
+	$(document).ready(function(){
+		$( "#add-equipment" ).submit(function( event ) {
+			var formData = {
+				"equipmentName": $("#equipmentName").val(),
+				"equipmentNumber":$("#equipmentNumber").val(),
+				"equipmentType": $("#equipmentType").val(),
+				"features": $("#features").val(),
+				"price": $("#price").val(),
+				"stockavailabilty": $("#stockavailability").val(),
+			};
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:8082/ElevatorsKart-0.0.1-SNAPSHOT/rest/elevators/addNewElevators",
+				crossDomain: true,
+				dataType: "json",
+				data: JSON.stringify(formData),
+	            contentType: "application/json; charset=utf-8",
+	            xhrFields: { withCredentials: true },
+				beforeSend: function( xhr ) {
+					$('#loading').html('');
+					$("#loading").html('Loading...');
+				},
+				success: function (data, textStatus, xhr) {
+					if(xhr.status == 200){
+						$("#statusText").html('Equipment details has been added successfully');
+						$("#loading").html('');
+						$("#equipmentName").val('');
+						$("#equipmentNumber").val('');
+						$("#equimentType").val('');
+						$("#features").val('');
+						$("#price").val('');
+						$("#stockavailability").val('');			
+							data: data
+						}});  <!-- issue in this line with ')' -->
+			}else{
+						$("#statusText").html(xhr.responseJSON.message);
+						$("loading").html('');
+						}
+					}
+				});
+				error: function (err,textStatus) {
+					$("#statusText").html('Error!!! cannot post the data to the database');
+				}
+			});
+		  event.preventDefault();
+		});
+	});
+	}  
+</script>
+</body>
+</html>
+
+<!--This is for getting the Elevator Data -->
+<!-- <h3>getElevators</h3>
+<div style="margin:20px 0;" class="row">
+<div class="col-md-3">
+<input type="text" class="form-control" id="searchEquipmentNumber" placeholder="Enter type of the Elevator"/>
+<div class="col-md-2">
+<button type="submit" class="btn btn-primary onclick="getEquipementByType()">search</button>
+</div>
+</div>
+</div>  
+		
+	  <h3>Search Equipment</h3>
+	  <div style="margin: 20px 0;" class="row">
+		<div class="col-md-3">
+			<input type="text" class="form-control" id="searchEquipmentNumber" placeholder="Enter Equipment Number"/>
+		</div>
+		<div class="col-md-2">
+			<button type="submit" class="btn btn-primary" onclick="getEquipment()">Search</button>
+		</div>
+		<div class="col-md-2">Or</div>
+		<div class="col-md-3">
+			<input type="text" class="form-control" id="searchEquipmentLimitNumber" placeholder="Enter no of equipments to fetch"/>
+		</div>
+		<div class="col-md-2">
+			<button type="submit" class="btn btn-primary mb-2" onclick="getEquipmentLimit()">Search</button>
+		</div>
+	  </div>   
+	  	function getEquipmentByType(){
+		if($("#getEquipmentByType").val() !=" "){
+			$.ajax({
+				type:"GET",
+				url:"http://localhost:8080/ElevatorsKart-0.0.1-SNAPSHOT/rest/elevators/ConnectedElevators",
+				crossDomain:true,
+				contentType:"application/json; charset=utf-8",
+				xhrFields:{ withCredentials:true},
+				beforesend: function(xhr){
+					$("#statusText").html(xhr.responseJSON.message);
+					$("loading").html('');
+				}
+				}
+		};
+		error:function(err,textStatus){
+			$("#statusText").html('Error.. cannot fetch the data from Databse ');
+			}
+		)}; 
+function getEquipment() {
+
+		if($("#searchEquipmentNumber").val() != ""){
+			$("#searchEquipmentLimitNumber").val('');
+			$.ajax({
+				type: "GET",
+				url: "http://localhost:8082/ElevatorsKart-0.0.1-SNAPSHOT/rest/elevators/allElevators",
+				crossDomain: true,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				xhrFields: { withCredentials: true },
+				beforeSend: function( xhr ) {
+					$("#loading").html('Loading...');
+				},
+				success: function (data) {
+					$("#loading").html('');
+					$('#equipment-table').bootstrapTable("destroy");
+					$('#equipment-table').bootstrapTable({
+						
+						data: [data]				
+					});				
+					console.log('data', data);
+				},
+				error: function (er) {
+				}
+			});
+		}
+	}
+ -->
+
+ <!-- get elevators function-->
+	
+<!--
+ function getElevatorDetails(){
+	if("#nonConnectedElevators".val() !=""){
+		$.ajax({
+			type:"GET",
+			url:"http://localhost:8082/ElevatorsKart-0.0.1-SNAPSHOT/rest/elevators/nonConnectedElevators",
+			crossDomain:true,
+			dataType:"json",
+			contentType:"application/json; charset=utf-8",
+			xhrFields:{withCredentials:true},
+			beforeSend: function(xhr){
+			$("#loading").html('Loading!!!');,
+			sucess:function(data){
+				$("#loading").html('');
+				$('#equipment-table').bootstrapTable("destroy");
+				$('#equipment-table').bootstrapTable({
+					data:[data]
+				)};
+				console.log('data':data);
+			},
+			error:function(er)
+		}
+			)};
+}-->
+	<!--function getEquipmentLimit() {
+	this function performs the activities releated to get Equipment Number 
+
+		if($("#searchEquipmentLimitNumber").val() != ""){
+			$("#searchEquipmentNumber").val('');
+			$.ajax({
+				type: "GET",
+				url: "http://localhost:8080/ElevatorsKart-0.0.1-SNAPSHOT/rest/elevators/digitalElevators",
+				crossDomain: true,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				xhrFields: { withCredentials: true },
+				beforeSend: function( xhr ) {
+					$("#loading").html('Loading...');
+				},
+				success: function (data) {
+					$("#loading").html('');
+					$('#equipment-table').bootstrapTable("destroy");
+					$('#equipment-table').bootstrapTable({
+						data: data
+					});				
+					console.log('data', data);
+				},
+				error: function (er) {
+				}
+			});
+		} -->

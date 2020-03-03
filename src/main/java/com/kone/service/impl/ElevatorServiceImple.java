@@ -13,7 +13,7 @@ public class ElevatorServiceImple implements ElevatorService {
 		if (elevatorData != null) {
 			for (Elevator elevatorDataLoop : elevatorData) {
 				System.out.println("Elevator Id" + elevatorDataLoop.getEno());
-				System.out.println("Elevator Name" + elevatorDataLoop.getName());
+				System.out.println("Elevator Name" + elevatorDataLoop.getEname());
 				System.out.println("Elevator features" + elevatorDataLoop.getFeatures());
 			}
 		}
@@ -25,7 +25,7 @@ public class ElevatorServiceImple implements ElevatorService {
 		if (elevatorData != null) {
 			for (Elevator elevatorDataLoop : elevatorData) {
 				System.out.println("Elevator Id" + elevatorDataLoop.getEno());
-				System.out.println("Elevator Name" + elevatorDataLoop.getName());
+				System.out.println("Elevator Name" + elevatorDataLoop.getEname());
 				System.out.println("Elevator features" + elevatorDataLoop.getFeatures());
 			}
 		}
@@ -37,7 +37,7 @@ public class ElevatorServiceImple implements ElevatorService {
 		if (elevatorData != null) {
 			for (Elevator elevatorDataLoop : elevatorData) {
 				System.out.println("Elevator Id" + elevatorDataLoop.getEno());
-				System.out.println("Elevator Name" + elevatorDataLoop.getName());
+				System.out.println("Elevator Name" + elevatorDataLoop.getEname());
 				System.out.println("Elevator features" + elevatorDataLoop.getFeatures());
 			}
 		}
@@ -49,9 +49,9 @@ public class ElevatorServiceImple implements ElevatorService {
 
 		List<Elevator> elevatorData = elevatordaoimpl.elevatorData();
 		if (elevatorData != null) {
-			for (Elevator elevatorDataLoop : elevatorData) { //
+			for (Elevator elevatorDataLoop : elevatorData) {
 				System.out.println("Elevator Id" + elevatorDataLoop.getEno());
-				System.out.println("Elevator Name" + elevatorDataLoop.getName());
+				System.out.println("Elevator EName" + elevatorDataLoop.getEname());
 				System.out.println("Elevator Price" + elevatorDataLoop.getPrice());
 				System.out.println("Elevator stock" + elevatorDataLoop.getStock());
 				System.out.println("Elevator features" + elevatorDataLoop.getFeatures());
@@ -61,11 +61,9 @@ public class ElevatorServiceImple implements ElevatorService {
 
 	}
 
-	public void addElevator(Elevator elevator) throws Exception {	
+	public void addElevator(Elevator elevator) throws Exception {
+
 		elevatordaoimpl.addElevator(elevator);
+
 	}
-
-		}
-
-
-	
+}
